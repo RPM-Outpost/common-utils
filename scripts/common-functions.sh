@@ -37,22 +37,25 @@ manage_dir() {
 
 # extract archive_file destination [options]
 extract() {
-	if [[ "$1" == *".tar.gz" ]]; then
+	echo "Extracting \"$1\"..."
+	if [[ "$1" == *.tar.gz ]]; then
 		command="tar -xzf \"$1\" -C \"$2\""
-	elif [[ "$1" == *".tar.xz" ]];then
+	elif [[ "$1" == *.tar.xz ]];then
 		command="tar -xJf \"$1\" -C \"$2\""
-	elif [[ "$1" == *".tar.bz2" ]];then
+	elif [[ "$1" == *.tar.bz2 ]];then
 		command="tar -xjf \"$1\" -C \"$2\""
-	elif [[ "$1" == *".tar" ]];then
+	elif [[ "$1" == *.tar ]];then
 		command="tar -xf \"$1\" -C \"$2\""
-	elif [[ "$1" == *".zip" ]]; then
+	elif [[ "$1" == *.zip ]]; then
 		command="unzip -q \"$1\" -d \"$2\""
 	else
 		disp "${red}Unsupported archive type for $1"
 		return 10
 	fi
-	if [[ $# -gt 2 ]]; then
-		eval $command $2 # Custom options
+	if [ $# -eq 3 ]; then
+		eval $command $3 # Custom options
+	elif [ $# -eq 4 ]; then
+		eval $command $3 $4 # Custom options
 	else
 		eval $command
 	fi
