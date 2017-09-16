@@ -38,11 +38,20 @@ manage_dir() {
 # ask_installpkg
 ## Asks the user if they want to install the newly created package.
 ask_installpkg() {
-	ask_yesno 'Install the package now?'
+	if [[ $# -eq 2 && $2 == "all" ]]; then
+		p_str='packages'
+	else
+		p_str='package'
+	fi
+	ask_yesno "Install the $p_str now?"
 	case "$answer" in
 		y|Y)
 			cd "$rpm_dir/$arch"
-			rpm_filename=$(find -maxdepth 1 -type f -name '*.rpm' -printf '%P\n' -quit)
+			if [[ $# -eq 2 && $2 == "all" ]]; then
+				rpm_filename=$(find -maxdepth 1 -type f -name '*.rpm' -printf '%P\n' -quit)
+			else
+				rpm_filename=$(find -type f -name '*.rpm' -printf '%P\n')
+			fi
 			sudo dnf install "$rpm_dir/$arch/$rpm_filename"
 			;;
 		*)
