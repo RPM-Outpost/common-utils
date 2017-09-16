@@ -1,12 +1,18 @@
 #!/bin/bash
 
+# ask_yesno question
+## Asks a yes/no question and stores the result in the 'answer' variable
+ask_yesno() {
+	style $reset$bold
+	read -n 1 -p "> $1 [y/N]: " answer
+	echo
+	style $reset
+}
+
 # ask_remove_dir directory
 ## Asks the user if they want to remove the specified directory, and removes it if they want to.
 ask_remove_dir() {
-	style $reset$bold
-	read -n 1 -p "> Remove the directory \"$1\"? [y/N]: " answer
-	echo
-	style $reset
+	ask_yesno "Remove the directory \"$1\"?"
 	case "$answer" in
 		y|Y)
 			rm -r "$1"
@@ -51,4 +57,3 @@ extract() {
 		eval $command
 	fi
 }
-
