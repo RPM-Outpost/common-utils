@@ -35,6 +35,21 @@ manage_dir() {
 	mkdir -p "$1"
 }
 
+# ask_installpkg
+## Asks the user if they want to install the newly created package.
+ask_installpkg() {
+	ask_yesno 'Install the package now?'
+	case "$answer" in
+		y|Y)
+			cd "$rpm_dir/$arch"
+			rpm_filename=$(find -maxdepth 1 -type f -name '*.rpm' -printf '%P\n' -quit)
+			sudo dnf install "$rpm_dir/$arch/$rpm_filename"
+			;;
+		*)
+			echo 'Package not installed.'
+	esac
+}
+
 # extract archive_file destination [options]
 extract() {
 	echo "Extracting \"$1\"..."
