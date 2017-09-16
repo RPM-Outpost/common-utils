@@ -51,7 +51,7 @@ extract() {
 		disp "${red}Unsupported archive type for $1"
 		return 10
 	fi
-	if [[ $# -gt 2]]; then
+	if [[ $# -gt 2 ]]; then
 		eval $command $2 # Custom options
 	else
 		eval $command
