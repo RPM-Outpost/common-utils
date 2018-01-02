@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author: TheElectronWill
+# Made for https://github.com/RPM-Outpost
+# This script requires terminal-colors.sh and common-functions.sh
 
 # It's a bad idea to run rpmbuild as root!
 if [ "$(id -u)" = "0" ]; then

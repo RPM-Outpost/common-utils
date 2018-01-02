@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author: TheElectronWill
+# Various functions used by the scripts of https://github.com/RPM-Outpost
+# This script requires terminal-colors.sh
 
 # ask_yesno question
 ## Asks a yes/no question and stores the result in the 'answer' variable
@@ -35,7 +38,7 @@ manage_dir() {
 	mkdir -p "$1"
 }
 
-# ask_installpkg
+# ask_installpkg [all] [allowerasing]
 ## Asks the user if they want to install the newly created package.
 ask_installpkg() {
 	if [[ $1 == "all" || $2 == "all" ]]; then
@@ -63,7 +66,7 @@ ask_installpkg() {
 	esac
 }
 
-# extract archive_file destination [options]
+# extract archive_file destination [option1 [option2]]
 extract() {
 	echo "Extracting \"$1\"..."
 	if [[ "$1" == *.tar.gz ]]; then

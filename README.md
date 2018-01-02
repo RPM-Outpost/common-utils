@@ -1,2 +1,2 @@
 # common-utils
-Files used by several RPM-Outpost projects
+Files used by several, if not all, RPM-Outpost repositories.

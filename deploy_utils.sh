@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author: TheElectronWill
+# Script that deploys the other scripts to all the repositories of https://github.com/RPM-Outpost
+
 set -e # Stops the script on error
 
 copy_scripts_to() {
