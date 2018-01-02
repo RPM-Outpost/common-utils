@@ -17,8 +17,9 @@ elif hash urpmi 2>/dev/null; then
 	installer="urpmi"
 	distrib="mageia"
 else
-	disp "${red}Sorry, your distribution isn't supported (yet).$reset"
-	exit
+	# Unknown
+	installer="exit"
+	distrib="unknown"
 fi
 
 # ask_yesno question
